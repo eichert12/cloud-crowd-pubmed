@@ -13,15 +13,20 @@ class Pubmed < CloudCrowd::Action
   end
 
   def process
+    download_zip(input)
+    read_xml unzip(input)
+  end
+  
+  def download_zip(input)
     url = "http://ftp.nlm.nih.gov/projects/medleasebaseline/zip/#{input.strip}"
-    
     puts "downloading #{url}..."
     open("./#{input}", 'wb') do |out|
       out.write(open(url, :http_basic_authentication => ["eichert", "rjs@dpa7"]).read)
       out.close
     end
-
-
+  end
+  
+  def unzip(input)
     xml_file = input.gsub(".zip", "")
     puts "extracting #{xml_file}..."
     unless File.exist?(xml_file)
@@ -29,7 +34,10 @@ class Pubmed < CloudCrowd::Action
         entry.extract(xml_file)
       end
     end
-
+    xml_file
+  end
+  
+  def read_xml(xml_file)
     puts "reading xml file..."
     #xml_file = "medline10n0001.xml"
     doc = Nokogiri::XML(open(xml_file)).search("/MedlineCitationSet/MedlineCitation").collect do |citation|
