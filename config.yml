@@ -19,11 +19,11 @@
 :storage:             filesystem
 
 # Please provide your AWS credentials for S3 storage of job output.
-:aws_access_key:      15QN7X0P65HR0X975T02
-:aws_secret_key:      ATc3XryWKzZkIo7fyWWsJpd0NoNu8QJnqbi4mDlb
+:aws_access_key:      
+:aws_secret_key:      
 
-access_key_id:  15QN7X0P65HR0X975T02  
-secret_access_key: ATc3XryWKzZkIo7fyWWsJpd0NoNu8QJnqbi4mDlb
+access_key_id:    
+secret_access_key: 
 # Choose an S3 bucket to store all CloudCrowd output, and decide if you'd like
 # to keep all resulting files on S3 private. If so, you'll receive authenticated
 # S3 URLs as job output, good for 24 hours. If left public, you'll get the
